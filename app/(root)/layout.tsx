@@ -1,13 +1,15 @@
-import React from 'react'
+import SidebarWrapper from "@/components/shared/sidebar/SidebarWrapper";
+import { TooltipProvider } from "@radix-ui/react-tooltip";
+import React from "react";
 
-type Props = React.PropsWithChildren<{
+type Props = React.PropsWithChildren<{}>;
 
-}>
-
-const layout = ({children}: Props) => {
+const layout = ({ children }: Props) => {
   return (
-    <>{children}</>
-  )
-}
+    <SidebarWrapper>
+      <TooltipProvider>{children}</TooltipProvider>
+    </SidebarWrapper>
+  );
+};
 
-export default layout
+export default layout;
