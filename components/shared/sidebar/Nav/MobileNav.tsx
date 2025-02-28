@@ -12,9 +12,13 @@ import { useNavigation } from "@/hooks/useNavigation";
 import { UserButton } from "@clerk/nextjs";
 import Link from "next/link";
 import React from "react";
+import { useConversation } from "@/hooks/useConversation";
 
 const MobileNav = () => {
   const paths = useNavigation();
+  const {isActive} = useConversation()
+
+  if (isActive) return null;
   
   return (
     <Card className="fixed bottom-4 left-4 right-4 w-[calc(100%-32px)] flex h-16 items-center lg:hidden border shadow-lg rounded-full bg-white/90 backdrop-blur-sm">
