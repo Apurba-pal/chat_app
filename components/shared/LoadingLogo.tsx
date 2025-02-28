@@ -12,7 +12,7 @@ const LoadingLogo = ({ size = 100 }: Props) => {
         width={size}
         height={size}
         alt="Loading"
-        className="animate-pulse duration-1000"
+        className="animate-pulse duration-100"
       />
     </div>
   );
