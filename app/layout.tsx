@@ -5,10 +5,10 @@ import {
   SignUpButton,
   SignedIn,
   SignedOut,
-  // UserButton,
 } from '@clerk/nextjs'
 import { Geist, Geist_Mono } from 'next/font/google'
 import './globals.css'
+import { ThemeProvider } from '@/components/ui/theme/theme-provider'
 
 const geistSans = Geist({
   variable: '--font-geist-sans',
@@ -31,24 +31,31 @@ export default function RootLayout({
   children: React.ReactNode
 }>) {
   return (
-    <ClerkProvider>
-      <html lang="en">
-        <body
-          className={`${geistSans.variable} ${geistMono.variable} antialiased`}
-          suppressHydrationWarning={true}
+    <html lang="en" suppressHydrationWarning>
+      <body
+        className={`${geistSans.variable} ${geistMono.variable} antialiased`}
+        suppressHydrationWarning
+      >
+        <ThemeProvider
+          attribute="class"
+          defaultTheme="system"
+          enableSystem
+          disableTransitionOnChange
+          storageKey="chat-theme"
         >
-          {/* <header className="flex justify-end items-center p-4 gap-4 h-16"> */}
-          <header>
-            <SignedOut>
-              <SignInButton />
-              <SignUpButton />
-            </SignedOut>
-            <SignedIn>
-            </SignedIn>
-          </header>
-          {children}
-        </body>
-      </html>
-    </ClerkProvider>
+          <ClerkProvider>
+            <header>
+              <SignedOut>
+                <SignInButton />
+                <SignUpButton />
+              </SignedOut>
+              <SignedIn>
+              </SignedIn>
+            </header>
+            {children}
+          </ClerkProvider>
+        </ThemeProvider>
+      </body>
+    </html>
   )
 }

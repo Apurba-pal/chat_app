@@ -13,6 +13,7 @@ import { UserButton } from "@clerk/nextjs";
 import Link from "next/link";
 import React from "react";
 import { useConversation } from "@/hooks/useConversation";
+import { ThemeToggle } from "@/components/ui/theme/theme-toggle";
 
 const MobileNav = () => {
   const paths = useNavigation();
@@ -46,6 +47,7 @@ const MobileNav = () => {
               </Link>
             </li>
           ))}
+          <li><ThemeToggle/></li>
           <li>
             <UserButton afterSignOutUrl="/" />
           </li>
