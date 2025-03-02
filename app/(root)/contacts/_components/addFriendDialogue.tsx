@@ -8,6 +8,7 @@ import {
   Dialog,
   DialogContent,
   DialogDescription,
+  DialogFooter,
   DialogHeader,
   DialogTitle,
   DialogTrigger,
@@ -25,6 +26,7 @@ import {
   FormField,
   FormItem,
   FormLabel,
+  FormMessage,
 } from "@/components/ui/form";
 import { Input } from "@/components/ui/input";
 
@@ -79,10 +81,15 @@ const AddFriendDialogue = (props: Props) => {
                     <FormControl>
                       <Input placeholder="email ..." {...field} />
                     </FormControl>
+                    <FormMessage />
                   </FormItem>
                 )}
               />
-              <Button type="submit" className="w-full">Add Friend</Button>
+
+
+              <DialogFooter>
+                <Button disabled={false} type="submit">Send</Button>
+              </DialogFooter>
             </form>
           </Form>
         </DialogContent>
@@ -92,3 +99,6 @@ const AddFriendDialogue = (props: Props) => {
 };
 
 export default AddFriendDialogue;
+
+
+// 1:33:07
