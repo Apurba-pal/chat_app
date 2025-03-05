@@ -5,6 +5,7 @@ import ItemList from '@/components/shared/item-list/ItemList'
 import React, { useState } from 'react'
 import { AddNewButton, MasterButton, UnrecognisedButton } from './_components/VoiceActions'
 import VoiceCommandItem from './_components/VoiceCommandItem'
+import VoiceCommandDetails from './_components/VoiceCommandDetails'
 
 type VoiceCommand = {
   id: string;
@@ -81,9 +82,10 @@ const VoiceRecognitionPage = () => {
           </div>
         )}
         {selectedView?.type === 'command' && (
-          <div className="flex items-center justify-center h-full">
-            <h2 className="text-xl">Hello from Component number {selectedView.id}</h2>
-          </div>
+          <VoiceCommandDetails 
+            id={selectedView.id!} 
+            command={commands.find(cmd => cmd.id === selectedView.id)?.command || ''}
+          />
         )}
       </ConversationFallback>
     </>
