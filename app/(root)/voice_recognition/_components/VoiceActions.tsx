@@ -18,7 +18,7 @@ export const MasterButton = () => (
         </Button>
       </TooltipTrigger>
       <TooltipContent>
-        <p>Master Voice Commands</p>
+        <p>Master</p>
       </TooltipContent>
     </Tooltip>
   </TooltipProvider>
@@ -33,7 +33,7 @@ export const AddNewButton = () => (
         </Button>
       </TooltipTrigger>
       <TooltipContent>
-        <p>Add New Command</p>
+        <p>Add New</p>
       </TooltipContent>
     </Tooltip>
   </TooltipProvider>
@@ -48,7 +48,7 @@ export const UnrecognisedButton = () => (
         </Button>
       </TooltipTrigger>
       <TooltipContent>
-        <p>Unrecognised Commands</p>
+        <p>Unrecognised</p>
       </TooltipContent>
     </Tooltip>
   </TooltipProvider>

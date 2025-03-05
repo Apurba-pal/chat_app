@@ -1,9 +1,36 @@
+"use client";
+
 import ConversationFallback from '@/components/shared/conversation/ConversationFallback'
 import ItemList from '@/components/shared/item-list/ItemList'
-import React from 'react'
+import React, { useState } from 'react'
 import { AddNewButton, MasterButton, UnrecognisedButton } from './_components/VoiceActions'
+import VoiceCommandItem from './_components/VoiceCommandItem'
+
+type VoiceCommand = {
+  id: string;
+  command: string;
+};
 
 const VoiceRecognitionPage = () => {
+  const [commands, setCommands] = useState<VoiceCommand[]>([]);
+
+  const handleAddCommand = () => {
+    const newCommand = {
+      id: Date.now().toString(),
+      command: `New Command ${commands.length + 1}`,
+    };
+    setCommands([newCommand, ...commands]);
+  };
+
+  const handleDeleteCommand = (id: string) => {
+    setCommands(commands.filter(cmd => cmd.id !== id));
+  };
+
+  const handleEditCommand = (id: string) => {
+    // TODO: Implement edit functionality
+    console.log('Edit command:', id);
+  };
+
   return (
     <>
       <ItemList 
@@ -11,15 +38,23 @@ const VoiceRecognitionPage = () => {
         action={
           <div className="flex items-center gap-2">
             <MasterButton />
-            <AddNewButton />
+            <div onClick={handleAddCommand}>
+              <AddNewButton />
+            </div>
           </div>
         }
       >
-        <div className="flex flex-col h-[calc(100vh-200px)]">
-          <div className="flex-grow"></div>
-          <div className="flex justify-center pb-4">
-            <UnrecognisedButton />
-          </div>
+        {commands.map((cmd) => (
+          <VoiceCommandItem
+            key={cmd.id}
+            id={cmd.id}
+            command={cmd.command}
+            onDelete={handleDeleteCommand}
+            onEdit={handleEditCommand}
+          />
+        ))}
+        <div className="mt-auto flex justify-center w-full">
+          <UnrecognisedButton />
         </div>
       </ItemList>
       <ConversationFallback />
