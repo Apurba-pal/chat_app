@@ -9,11 +9,11 @@ import {
 } from "@/components/ui/tooltip";
 import { Brain, Plus, HelpCircle } from "lucide-react";
 
-export const MasterButton = () => (
+export const MasterButton = ({ onClick }: { onClick: () => void }) => (
   <TooltipProvider>
     <Tooltip>
       <TooltipTrigger asChild>
-        <Button variant="outline" size="icon">
+        <Button variant="outline" size="icon" onClick={onClick}>
           <Brain className="h-5 w-5" />
         </Button>
       </TooltipTrigger>

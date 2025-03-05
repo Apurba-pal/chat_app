@@ -9,9 +9,10 @@ type VoiceCommandProps = {
   command: string;
   onDelete: (id: string) => void;
   onEdit: (id: string, newCommand: string) => void;
+  onSelect: (id: string) => void;  // Add this prop
 };
 
-const VoiceCommandItem = ({ id, command, onDelete, onEdit }: VoiceCommandProps) => {
+const VoiceCommandItem = ({ id, command, onDelete, onEdit, onSelect }: VoiceCommandProps) => {
   const [isEditing, setIsEditing] = useState(false);
   const [editedCommand, setEditedCommand] = useState(command);
   const [isHovered, setIsHovered] = useState(false);
@@ -32,9 +33,10 @@ const VoiceCommandItem = ({ id, command, onDelete, onEdit }: VoiceCommandProps) 
 
   return (
     <Card 
-      className="p-4 w-full flex items-center justify-between group"
+      className="p-4 w-full flex items-center justify-between group cursor-pointer"
       onMouseEnter={() => setIsHovered(true)}
       onMouseLeave={() => setIsHovered(false)}
+      onClick={() => !isEditing && onSelect(id)} // Only select if not editing
     >
       {isEditing ? (
         <Input

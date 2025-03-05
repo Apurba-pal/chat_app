@@ -11,8 +11,14 @@ type VoiceCommand = {
   command: string;
 };
 
+type SelectedView = {
+  type: 'master' | 'command';
+  id?: string;
+} | null;
+
 const VoiceRecognitionPage = () => {
   const [commands, setCommands] = useState<VoiceCommand[]>([]);
+  const [selectedView, setSelectedView] = useState<SelectedView>(null);
 
   const handleAddCommand = () => {
     const newCommand = {
@@ -32,13 +38,21 @@ const VoiceRecognitionPage = () => {
     ));
   };
 
+  const handleSelectCommand = (id: string) => {
+    setSelectedView({ type: 'command', id });
+  };
+
+  const handleMasterClick = () => {
+    setSelectedView({ type: 'master' });
+  };
+
   return (
     <>
       <ItemList 
         title='Voice Bank'
         action={
           <div className="flex items-center gap-2">
-            <MasterButton />
+            <MasterButton onClick={handleMasterClick} />
             <div onClick={handleAddCommand}>
               <AddNewButton />
             </div>
@@ -52,13 +66,26 @@ const VoiceRecognitionPage = () => {
             command={cmd.command}
             onDelete={handleDeleteCommand}
             onEdit={handleEditCommand}
+            onSelect={handleSelectCommand}
           />
         ))}
         <div className="mt-auto flex justify-center w-full">
           <UnrecognisedButton />
         </div>
       </ItemList>
-      <ConversationFallback />
+      
+      <ConversationFallback>
+        {selectedView?.type === 'master' && (
+          <div className="flex items-center justify-center h-full">
+            <h2 className="text-xl">Hello from Master Component</h2>
+          </div>
+        )}
+        {selectedView?.type === 'command' && (
+          <div className="flex items-center justify-center h-full">
+            <h2 className="text-xl">Hello from Component number {selectedView.id}</h2>
+          </div>
+        )}
+      </ConversationFallback>
     </>
   )
 }
