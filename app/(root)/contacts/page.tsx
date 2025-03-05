@@ -7,7 +7,7 @@ type Props = {}
 
 const ContactsPage = (props: Props) => {
   return (
-    <><ItemList title='Friends' action={<AddFriendDialogue/>}></ItemList>
+    <><ItemList title='Contacts' action={<AddFriendDialogue/>}></ItemList>
     <ConversationFallback/>
     </>
   )

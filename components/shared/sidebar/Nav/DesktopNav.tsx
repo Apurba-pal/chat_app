@@ -8,34 +8,56 @@ import {
   TooltipProvider,
   TooltipTrigger,
 } from "@/components/ui/tooltip";
-import { useNavigation } from "@/hooks/useNavigation";
+import { usePathname } from "next/navigation";
 import { UserButton } from "@clerk/nextjs";
 import Link from "next/link";
 import React from "react";
 import { ThemeToggle } from "@/components/ui/theme/theme-toggle";
+import { MessageSquare, Users, Mic } from "lucide-react";
 
 const DesktopNav = () => {
-  const paths = useNavigation();
+  const pathname = usePathname();
+
+  const navigationItems = [
+    {
+      href: "/conversations",
+      name: "conversations",
+      icon: <MessageSquare />,
+      active: pathname === "/conversations",
+    },
+    {
+      href: "/contacts",
+      name: "contacts",
+      icon: <Users />,
+      active: pathname === "/contacts",
+    },
+    {
+      href: "/voice_recognition",
+      name: "voice",
+      icon: <Mic />,
+      active: pathname === "/voice_recognition",
+    },
+  ];
   
   return (
     <Card className="hidden lg:flex lg:flex-col lg:justify-between lg:items-center lg:h-full lg:w-16 lg:px-2 lg:py-4">
       <nav className="flex flex-col items-center gap-4">
         <ul className="flex flex-col gap-4 items-center">
-          {paths.map((path) => (
-            <li key={path.href} className="relative">
-              <Link href={path.href}>
+          {navigationItems.map((item) => (
+            <li key={item.href} className="relative">
+              <Link href={item.href}>
                 <TooltipProvider>
                   <Tooltip>
                     <TooltipTrigger asChild>
                       <Button
                         size="icon"
-                        variant={path.active ? "default" : "outline"}
+                        variant={item.active ? "default" : "outline"}
                       >
-                        {path.icons}
+                        {item.icon}
                       </Button>
                     </TooltipTrigger>
                     <TooltipContent>
-                      <p className="capitalize">{path.name}</p>
+                      <p className="capitalize">{item.name}</p>
                     </TooltipContent>
                   </Tooltip>
                 </TooltipProvider>
