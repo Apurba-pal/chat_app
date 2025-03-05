@@ -7,7 +7,7 @@ const VoiceRecognitionPage = () => {
   return (
     <>
       <ItemList 
-        title='Voice Recognition'
+        title='Voice Bank'
         action={
           <div className="flex items-center gap-2">
             <MasterButton />
@@ -15,8 +15,11 @@ const VoiceRecognitionPage = () => {
           </div>
         }
       >
-        <div className="mt-auto">
-          <UnrecognisedButton />
+        <div className="flex flex-col h-[calc(100vh-200px)]">
+          <div className="flex-grow"></div>
+          <div className="flex justify-center pb-4">
+            <UnrecognisedButton />
+          </div>
         </div>
       </ItemList>
       <ConversationFallback />
