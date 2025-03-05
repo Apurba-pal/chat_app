@@ -26,9 +26,10 @@ const VoiceRecognitionPage = () => {
     setCommands(commands.filter(cmd => cmd.id !== id));
   };
 
-  const handleEditCommand = (id: string) => {
-    // TODO: Implement edit functionality
-    console.log('Edit command:', id);
+  const handleEditCommand = (id: string, newCommand: string) => {
+    setCommands(commands.map(cmd => 
+      cmd.id === id ? { ...cmd, command: newCommand } : cmd
+    ));
   };
 
   return (
