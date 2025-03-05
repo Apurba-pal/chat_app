@@ -1,10 +1,15 @@
+import ConversationFallback from '@/components/shared/conversation/ConversationFallback'
+import ItemList from '@/components/shared/item-list/ItemList'
 import React from 'react'
 
 type Props = {}
 
 const VoiceRecognitionPage = (props: Props) => {
   return (
-    <div>Voice Recognition</div>
+    <>
+      <ItemList title='Voice Recognition' />
+      <ConversationFallback />
+    </>
   )
 }
 
